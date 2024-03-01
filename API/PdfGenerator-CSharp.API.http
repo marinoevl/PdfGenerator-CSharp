@@ -1,0 +1,6 @@
+@PdfGenerator_CSharp.API_HostAddress = http://localhost:5210
+
+GET {{PdfGenerator_CSharp.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
