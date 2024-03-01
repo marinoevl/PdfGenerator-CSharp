@@ -1,0 +1,7 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4da891bc_002D2848_002D442d_002Da017_002D6fc59bf1a2ce/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="HandlerCreateTemplate_WhenTemplateContentIsEmpty_ShouldRaiseValidationException" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::19C372B1-7865-4017-9453-B73772D9A896::net8.0::App.Templates.UnitTests.Create.CreateTemplateCommandHandlerUnitTests.HandlerCreateTemplate_WhenTemplateNameExists_ShouldRaiseValidationException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::19C372B1-7865-4017-9453-B73772D9A896::net8.0::App.Templates.UnitTests.Create.CreateTemplateCommandHandlerUnitTests.HandlerCreateTemplate_WhenItsCorrect_ShouldCreateRecord&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
