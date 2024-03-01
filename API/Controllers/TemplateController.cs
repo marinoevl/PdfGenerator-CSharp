@@ -1,3 +1,4 @@
+using Application.Templates.Create;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +21,10 @@ public class TemplateController: ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create(ISender sender)
+    public async Task<IActionResult> Create(ISender sender, CreateTemplateCommand request)
     {
-        return Ok();
+        await sender.Send(request);
+        return NoContent();
     }
     
     [HttpPut]
