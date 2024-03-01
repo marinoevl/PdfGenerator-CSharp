@@ -1,4 +1,5 @@
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ public static class DependencyInjection
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<DefaultDbContext>());
+        services.AddScoped(typeof(IGenericRepository<,>),typeof(GenericRepository<,>));
         return services;
     }
 }
