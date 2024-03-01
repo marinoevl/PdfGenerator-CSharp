@@ -36,7 +36,7 @@ public class DefaultDbContext: DbContext, IUnitOfWork
         }
     }
 
-    public DefaultDbContext(DbContextOptions options, IPublisher publisher)
+    public DefaultDbContext(DbContextOptions<DefaultDbContext> options, IPublisher publisher)
     :base(options)
     {
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));

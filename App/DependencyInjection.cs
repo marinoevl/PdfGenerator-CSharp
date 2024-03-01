@@ -6,7 +6,7 @@ namespace App;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplication(this ServiceCollection service)
+    public static IServiceCollection AddApplication(this IServiceCollection service)
     {
         service.AddMediatR(config =>
         {
