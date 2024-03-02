@@ -20,7 +20,8 @@ public class GeneratePdfQueryHandler: IRequestHandler<GeneratePdfQuery, string>
 
         if (string.IsNullOrEmpty(content)) throw new InvalidOperationException(nameof(query));
 
-        var bytes = content.GetMergeTemplateWithData(query.context)
+        var bytes = content
+            .GetMergeTemplateWithData(query.context)
             .ConvertHtmlStringToPdf();
 
         return Convert.ToBase64String(bytes);

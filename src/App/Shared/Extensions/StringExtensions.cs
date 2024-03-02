@@ -10,10 +10,13 @@ public static class StringExtensions
 {
     public static string GetMergeTemplateWithData(this string templateContent, Dictionary<string, object> data)
     {
-        var compiler = new FormatCompiler();
+        return Template.Compile(templateContent).Render(data);
+        
+       /* var compiler = new HtmlFormatCompiler();
         return compiler
             .Compile(templateContent)
             .Render(data);
+            */
     }
 
     public static byte[] ConvertHtmlStringToPdf(this string value)
