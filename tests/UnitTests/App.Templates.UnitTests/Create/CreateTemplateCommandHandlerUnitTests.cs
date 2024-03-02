@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using App.Shared.Exceptions;
 using App.Templates.Create;
-using LinqKit;
+using FluentAssertions;
 using PdfGenerator.Domain.Shared;
 using PdfGenerator.Domain.Templates;
 
@@ -25,7 +25,7 @@ public class CreateTemplateCommandHandlerUnitTests
         //Arrange
         var template = new Template(Guid.NewGuid(), "template-1", "<httml></html>");
         var command = new CreateTemplateCommand("template-1", "<httml></html>");
-        var cancelationToken = new CancellationToken();
+        var cancellationToken = new CancellationToken();
         _mockTemplateRepository
             .Setup(m => m.GetAsync(It.IsAny<Expression<Func<Template, bool>>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(template);
@@ -33,11 +33,11 @@ public class CreateTemplateCommandHandlerUnitTests
 
 
         //Act
-        var ex = await Assert.ThrowsAsync<ValidationException>(() => _handler.Handle(command, default));
+        var ex = await Assert.ThrowsAsync<ValidationException>(() => _handler.Handle(command, cancellationToken));
 
         //Assert
-        Assert.NotNull(ex);
-        Assert.IsType<ValidationException>(ex);
+        ex.Should().NotBeNull();
+        ex.Should().BeOfType<ValidationException>();
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public class CreateTemplateCommandHandlerUnitTests
         _handler = new CreateTemplateCommandHandler(_mockUnitOfWork.Object, _mockTemplateRepository.Object);
 
         //Act
-        var result = await _handler.Handle(command, cancelationToken);
+        await _handler.Handle(command, cancelationToken);
 
         //Assert
         _mockTemplateRepository.Verify(r => r.AddAsync(It.IsAny<Template>(), cancelationToken), Times.Once);

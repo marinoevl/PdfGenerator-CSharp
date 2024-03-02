@@ -21,7 +21,7 @@ public class GenericRepository<T, TU> :IGenericRepository<T, TU> where T: BaseDo
 
     public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) => await _context.Set<T>().SingleOrDefaultAsync(predicate, cancellationToken);
 
-    public IQueryable<T> GetAll(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default)
+    public IQueryable<T> GetAll(Expression<Func<T, bool>>? predicate = null)
     {
         return predicate is null ? _context.Set<T>().AsQueryable() : _context.Set<T>().Where(predicate).AsQueryable();
     }

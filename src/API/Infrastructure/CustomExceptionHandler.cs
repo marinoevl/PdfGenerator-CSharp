@@ -15,7 +15,8 @@ public class CustomExceptionHandler : IExceptionHandler
             {
                 { typeof(ValidationException), HandleValidationException },
                 { typeof(NotFoundException), HandleNotFoundException },
-                { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException }
+                { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
+                { typeof(InvalidOperationException), HandleClientException }
             };
     }
 
@@ -60,7 +61,7 @@ public class CustomExceptionHandler : IExceptionHandler
             Detail = exception.Message
         });
     }
-    
+
     private async Task HandleUnauthorizedAccessException(HttpContext httpContext, Exception ex)
     {
         httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
@@ -72,7 +73,7 @@ public class CustomExceptionHandler : IExceptionHandler
             Type = "https://tools.ietf.org/html/rfc7235#section-3.1"
         });
     }
-    
+
     private async Task HandleUnknownException(HttpContext httpContext)
     {
         httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
@@ -82,6 +83,17 @@ public class CustomExceptionHandler : IExceptionHandler
             Status = StatusCodes.Status500InternalServerError,
             Title = "An error occurred while processing your request.",
             Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
+        });
+    }
+    
+    private async Task HandleClientException(HttpContext httpContext, Exception exception)
+    {
+        httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+
+        await httpContext.Response.WriteAsJsonAsync(new ValidationProblemDetails(new Dictionary<string, string[]> { {nameof(exception), [exception.Message] }})
+        {
+            Status = StatusCodes.Status400BadRequest,
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
         });
     }
 }

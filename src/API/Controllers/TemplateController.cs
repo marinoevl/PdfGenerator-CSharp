@@ -1,5 +1,9 @@
 using App.Templates.Create;
 using App.Templates.Delete;
+using App.Templates.Exports;
+using App.Templates.GetAll;
+using App.Templates.GetById;
+using App.Templates.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,13 +16,13 @@ public class TemplateController: ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll(ISender sender)
     {
-        return Ok();
+        return Ok(await sender.Send(new GetAllTemplateQuery()));
     }
     
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(ISender sender, Guid id)
     {
-        return Ok();
+        return Ok(await sender.Send(new GetByIdTemplateQuery(id)));
     }
     
     [HttpPost]
@@ -28,16 +32,23 @@ public class TemplateController: ControllerBase
         return NoContent();
     }
     
-    [HttpPut]
-    public async Task<IActionResult> Update(ISender sender)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(ISender sender, [FromRoute] Guid id, [FromBody] string content)
     {
-        return Ok();
+        await sender.Send(new UpdateTemplateCommand(id, content));
+        return NoContent();
     }
     
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(ISender sender, Guid id)
     {
         await sender.Send(new DeleteTemplateCommand(id));
         return NoContent();
+    }
+    
+    [HttpGet("GeneratePdf")]
+    public async Task<IActionResult> Get(ISender sender, [FromBody] GeneratePdfQuery request)
+    {
+        return Ok(await sender.Send(request));
     }
 }
