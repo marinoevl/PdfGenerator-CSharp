@@ -20,4 +20,9 @@
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Templates\Commands\" />
+      <Folder Include="Templates\Queries\" />
+    </ItemGroup>
+
 </Project>

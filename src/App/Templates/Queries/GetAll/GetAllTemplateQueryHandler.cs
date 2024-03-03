@@ -1,11 +1,11 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PdfGenerator.Domain.Shared;
 using PdfGenerator.Domain.Templates;
-using Microsoft.EntityFrameworkCore;
 
-namespace App.Templates.GetAll;
+namespace App.Templates.Queries.GetAll;
 
-public sealed class GetAllTemplateQueryHandler( 
+internal sealed class GetAllTemplateQueryHandler( 
     IGenericRepository<Template, Guid> templateRepository)
     : IRequestHandler<GetAllTemplateQuery, List<Template>>
 {

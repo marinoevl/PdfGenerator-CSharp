@@ -1,9 +1,9 @@
-using App.Templates.Create;
-using App.Templates.Delete;
-using App.Templates.Exports;
-using App.Templates.GetAll;
-using App.Templates.GetById;
-using App.Templates.Update;
+using App.Templates.Commands.Create;
+using App.Templates.Commands.Delete;
+using App.Templates.Commands.Update;
+using App.Templates.Queries.Exports;
+using App.Templates.Queries.GetAll;
+using App.Templates.Queries.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

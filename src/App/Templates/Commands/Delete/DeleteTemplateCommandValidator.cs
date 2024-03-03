@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace App.Templates.Delete;
+namespace App.Templates.Commands.Delete;
 
 public class DeleteTemplateCommandValidator: AbstractValidator<DeleteTemplateCommand>
 {

@@ -5,7 +5,7 @@ using PdfGenerator.Domain.Shared;
 
 namespace Infrastructure.Persistence;
 
-public class DefaultDbContext: DbContext, IUnitOfWork
+public class  DefaultDbContext: DbContext, IUnitOfWork
 {
     private readonly IPublisher _publisher;
 

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace App.Templates.Exports;
+namespace App.Templates.Queries.Exports;
 
 public class GeneratePdfQueryValidator: AbstractValidator<GeneratePdfQuery>
 {

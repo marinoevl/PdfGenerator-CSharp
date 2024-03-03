@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 using App.Shared.Exceptions;
-using App.Templates.Create;
+using App.Templates.Commands.Create;
 using FluentAssertions;
 using PdfGenerator.Domain.Shared;
 using PdfGenerator.Domain.Templates;

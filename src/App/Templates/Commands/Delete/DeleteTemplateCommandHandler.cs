@@ -3,19 +3,20 @@ using MediatR;
 using PdfGenerator.Domain.Shared;
 using PdfGenerator.Domain.Templates;
 
-namespace App.Templates.Update;
+namespace App.Templates.Commands.Delete;
 
-public class UpdateTemplateCommandHandler(
+internal sealed class DeleteTemplateCommandHandler(
     IGenericRepository<Template, Guid> templateRepository,
-    IUnitOfWork unitOfWork): IRequestHandler<UpdateTemplateCommand, Unit>
+    IUnitOfWork unitOfWork)
+    : IRequestHandler<DeleteTemplateCommand, Unit>
 {
-    public async Task<Unit> Handle(UpdateTemplateCommand command, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeleteTemplateCommand command, CancellationToken cancellationToken)
     {
         var template = await templateRepository.GetAsync(m => m.Id == command.TemplateId, cancellationToken);
 
         if (template == null) throw new NotFoundException(nameof(command), command);
         
-        template.Update(command.Content);
+        template.MarkDeleted();
         
         templateRepository.Update(template);
         await unitOfWork.SaveChangesAsync(cancellationToken);

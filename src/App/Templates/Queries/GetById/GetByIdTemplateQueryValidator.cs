@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace App.Templates.GetById;
+namespace App.Templates.Queries.GetById;
 
 public class GetByIdTemplateQueryValidator: AbstractValidator<GetByIdTemplateQuery>
 {

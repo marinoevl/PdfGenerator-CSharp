@@ -2,4 +2,4 @@ using MediatR;
 
 namespace PdfGenerator.Domain.Shared;
 
-public record DomainEvent(Guid Id): INotification;
+public interface IDomainEvent: INotification; 

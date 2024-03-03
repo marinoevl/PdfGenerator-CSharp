@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace App.Templates.Update;
+namespace App.Templates.Commands.Update;
 
 public class UpdateTemplateCommandValidator: AbstractValidator<UpdateTemplateCommand>
 {

@@ -2,9 +2,9 @@
 using PdfGenerator.Domain.Shared;
 using PdfGenerator.Domain.Templates;
 
-namespace App.Templates.GetById;
+namespace App.Templates.Queries.GetById;
 
-public sealed class GetByIdTemplateQueryHandler( 
+internal sealed class GetByIdTemplateQueryHandler( 
     IGenericRepository<Template, Guid> templateRepository)
     : IRequestHandler<GetByIdTemplateQuery, Template?>
 {

@@ -3,9 +3,9 @@ using MediatR;
 using PdfGenerator.Domain.Shared;
 using PdfGenerator.Domain.Templates;
 
-namespace App.Templates.Exports;
+namespace App.Templates.Queries.Exports;
 
-public class GeneratePdfQueryHandler: IRequestHandler<GeneratePdfQuery, string>
+internal class GeneratePdfQueryHandler: IRequestHandler<GeneratePdfQuery, string>
 {
     private readonly IGenericRepository<Template, Guid> _templateRepository;
 

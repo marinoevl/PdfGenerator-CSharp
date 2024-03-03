@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace App.Templates.Exports;
+namespace App.Templates.Queries.Exports;
 
 public record GeneratePdfQuery(
     string template_name,

@@ -3,7 +3,7 @@ using MediatR;
 using PdfGenerator.Domain.Shared;
 using PdfGenerator.Domain.Templates;
 
-namespace App.Templates.Create;
+namespace App.Templates.Commands.Create;
 
 public sealed class CreateTemplateCommandHandler: IRequestHandler<CreateTemplateCommand, Unit>
 {

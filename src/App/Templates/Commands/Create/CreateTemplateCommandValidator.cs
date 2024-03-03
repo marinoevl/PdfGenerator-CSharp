@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace App.Templates.Create;
+namespace App.Templates.Commands.Create;
 
 public class CreateTemplateCommandValidator: AbstractValidator<CreateTemplateCommand>
 {
