@@ -1,3 +1,4 @@
+using PdfGenerator.Domain.DomainEvents;
 using PdfGenerator.Domain.Shared;
 
 namespace PdfGenerator.Domain.Templates;
@@ -30,6 +31,7 @@ public sealed class Template : BaseDomain, IAuditableDomain
     public void MarkDeleted()
     {
         DeleteFlag = true;
+        AddDomainEvents(new TemplateDeleteDomainEvent(Id));
     }
 
     public void Update(string content)

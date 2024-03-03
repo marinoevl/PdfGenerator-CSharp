@@ -18,7 +18,7 @@ public abstract class BaseDomain(Guid id)
         _domainEvents.Remove(domainEvent);
     }
 
-    protected void ClearDomainEvents(IDomainEvent domainEvent)
+    public void ClearDomainEvents()
     {
         _domainEvents.Clear();
     }

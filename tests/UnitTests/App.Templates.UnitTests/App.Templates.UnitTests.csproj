@@ -26,13 +26,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Delete\" />
-      <Folder Include="GetAll\" />
-      <Folder Include="GetById\" />
-      <Folder Include="Update\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\..\src\App\App.csproj" />
       <ProjectReference Include="..\..\..\src\Domain\Domain.csproj" />
     </ItemGroup>
