@@ -1,6 +1,8 @@
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Interceptors;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using PdfGenerator.Domain.Shared;
@@ -17,8 +19,16 @@ public static class DependencyInjection
     
     private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<DefaultDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        services.AddScoped<ISaveChangesInterceptor, AuditableDomainInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+        
+        
+        services.AddDbContext<DefaultDbContext>((sp,
+            options) =>
+        {
+            options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+        });
         
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<DefaultDbContext>());
         services.AddScoped(typeof(IGenericRepository<,>),typeof(GenericRepository<,>));
