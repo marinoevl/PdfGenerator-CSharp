@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Infrastructure.Persistence.Extensions;
+namespace Infrastructure.Persistence.mssql.Extensions;
 
 public static class EntityEntryExtension
 {

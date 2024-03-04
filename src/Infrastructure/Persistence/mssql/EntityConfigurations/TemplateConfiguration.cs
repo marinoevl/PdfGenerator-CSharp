@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PdfGenerator.Domain.Templates;
 
-namespace Infrastructure.Persistence.EntityConfigurations;
+namespace Infrastructure.Persistence.mssql.EntityConfigurations;
 
 public class TemplateConfiguration: IEntityTypeConfiguration<Template>
 {

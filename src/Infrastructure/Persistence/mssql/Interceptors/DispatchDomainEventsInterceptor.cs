@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using PdfGenerator.Domain.Shared;
 
-namespace Infrastructure.Persistence.Interceptors;
+namespace Infrastructure.Persistence.mssql.Interceptors;
 
 public sealed class DispatchDomainEventsInterceptor(IPublisher mediator) : SaveChangesInterceptor
 {

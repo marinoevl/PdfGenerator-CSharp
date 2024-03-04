@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using PdfGenerator.Domain.Shared;
 
-namespace Infrastructure.Persistence.Repositories;
+namespace Infrastructure.Persistence.mssql.Repositories;
 
 public class GenericRepository<T, TU> :IGenericRepository<T, TU> where T: BaseDomain
 {

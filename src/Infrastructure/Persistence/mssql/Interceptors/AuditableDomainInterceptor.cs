@@ -1,9 +1,9 @@
-﻿using Infrastructure.Persistence.Extensions;
+﻿using Infrastructure.Persistence.mssql.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using PdfGenerator.Domain.Shared;
 
-namespace Infrastructure.Persistence.Interceptors;
+namespace Infrastructure.Persistence.mssql.Interceptors;
 
 public class AuditableDomainInterceptor: SaveChangesInterceptor
 {
