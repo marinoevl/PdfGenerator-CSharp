@@ -26,3 +26,16 @@
       - "5000:5000"
     depends_on:
       - db
+        
+  pdf-generator-vue:
+    image: pdf-generator-vue
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: src/vue-app/Dockerfile
+      args:
+        VITE_URL_API: http://localhost:5000
+    ports:
+      - "80:80"
+    depends_on:
+      - pdf-generator-api

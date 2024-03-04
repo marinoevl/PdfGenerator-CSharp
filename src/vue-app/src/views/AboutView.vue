@@ -8,8 +8,9 @@ const router = useRouter()
 const route = useRoute()
 
 const id = ref<string>()
-const name = ref<string>()
+const name = ref<string>("")
 const content = ref<string>()
+const isNew = ref<boolean>(true)
 
 
 const submitTemplate = async () => {
@@ -24,22 +25,21 @@ const submitTemplate = async () => {
   if (id){
     await updateTemplate(id.value!.toString(), contentToSubmit)
   } else {
-    await createTemplate(name.value!.toString(), contentToSubmit)
+    await createTemplate(name.value, contentToSubmit)
   }  
   router.push({name: 'home'})
 }
 
 onMounted(async () => {
+  console.log(route.params)
   if (route.params.id) {
     const {data}: { data: ITemplate } = await getTemplateById(route.params?.id.toString())
     id.value = data.id
     name.value = data.name
     content.value =  atob(data.content);
+    isNew.value = false
   }
 })
-
-const isNew = computed(() => !!id)
-
 
 </script>
 <template>
