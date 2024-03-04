@@ -19,15 +19,20 @@ public static class DependencyInjection
     
     private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<ISaveChangesInterceptor, AuditableDomainInterceptor>();
-        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+        services.AddScoped<AuditableDomainInterceptor>();
+        services.AddScoped<DispatchDomainEventsInterceptor>();
         
         
         services.AddDbContext<DefaultDbContext>((sp,
             options) =>
         {
-            options.AddInterceptors(sp.GetRequiredService<ISaveChangesInterceptor>());
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            var dispatchInterceptor = sp.GetService<DispatchDomainEventsInterceptor>();
+            var auditInterceptor = sp.GetService<AuditableDomainInterceptor>();
+
+            
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+                    .AddInterceptors(auditInterceptor!)
+                    .AddInterceptors(dispatchInterceptor!);
         });
         
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<DefaultDbContext>());

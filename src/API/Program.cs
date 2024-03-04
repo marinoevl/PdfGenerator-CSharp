@@ -24,11 +24,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAll");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.UseExceptionHandler(options => { });
+
 
 app.Run();
