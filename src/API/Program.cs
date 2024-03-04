@@ -1,4 +1,5 @@
 using API;
+using API.Extensions;
 using Infrastructure;
 using App;
 
@@ -18,6 +19,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ApplyMigrations();
 }
 
 app.UseHealthChecks("/health");

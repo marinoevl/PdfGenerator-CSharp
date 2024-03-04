@@ -1,0 +1,28 @@
+﻿services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD : qUgeyvYnOKyMy9HRpGMauKlJdsyq1QdIJUtp8Hz6HarKKCIiVm7m3ITHsBFQSMkEcrGXQy4FNHFX6zKq5NTzysbE0EVJnh3HZwl6DkAloQu7GQ1NZVVNnYEFpkAcxdun
+      ACCEPT_EULA: "Y"
+    volumes:
+      - D:/SQLData/DockerVolume/MSSQL/data:/var/opt/mssql/data 
+      - D:/SQLData/DockerVolume/MSSQL/log:/var/opt/mssql/log 
+      - D:/SQLData/DockerVolume/MSSQL/secrets:/var/opt/mssql/secrets
+
+  pdf-generator-api:
+    image: pdf-generator-api
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: src/API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ConnectionStrings__DefaultConnection=Server=db;Database=PdfGenerator;Trusted_Connection=False;User Id=sa;Password=Asdf1234@-;MultipleActiveResultSets=true;Encrypt=false;TrustServerCertificate=Yes
+      - Logging__LogLevel__Default=Information
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
